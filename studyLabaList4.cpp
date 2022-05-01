@@ -46,13 +46,14 @@ int main()
         cout << "9: Удаление выбранного элемента" << endl;
         cout << "10: Считать из текстового файла" << endl;
         cout << "11: Очистить список" << endl;
-        cout << "12: Сортировка" << endl;
-        cout << "13: Поиск по числовому полю" << endl;
-        cout << "14: Поиск по текстовому полю" << endl;
-        cout << "15: Вывести размер списка" << endl;
-        cout << "16: Выход" << endl;
+        cout << "12: Сортировка по фамилии" << endl;
+        cout << "13: Сортировка по сумме баллов" << endl;
+        cout << "14: Поиск по числовому полю" << endl;
+        cout << "15: Поиск по текстовому полю" << endl;
+        cout << "16: Вывести размер списка" << endl;
+        cout << "17: Выход" << endl;
         cout << "________________________________\n" << endl;
-        cout << "Выберите операцию (1-16): ";
+        cout << "Выберите операцию (1-17): ";
 
         cin >> select;
         switch (select)
@@ -112,26 +113,38 @@ int main()
                 list.remove();
                 break;
 
-            case 12: cout << "Метод еще не создан" << endl; 
-                break;
-
-            case 13: cout << "Метод еще не создан" << endl;
+            case 12: 
+                
+                list.print_all();
+                cout << "Сортировка по фамилии" << endl;
+                list.sortBySurname();
+                list.print_all();
                 system("pause");
                 break;
-
+            case 13: 
+                list.print_all();
+                cout << "Сортировка по фамилии" << endl;
+                list.sortBySum();
+                list.print_all();
+                system("pause");
+                break;
             case 14: cout << "Метод еще не создан" << endl;
                 system("pause");
                 break;
 
-            case 15: 
+            case 15: cout << "Метод еще не создан" << endl;
+                system("pause");
+                break;
+
+            case 16: 
                 cout << list.get_size() << endl;
                 system("pause");
                 break;
-            case 16: flag = false;
+            case 17: flag = false;
                 list.remove();
                 break;;
 
-            default: cout << "Выберите число от 1 до 16\n";
+            default: cout << "Выберите число от 1 до 17\n";
         }
     }
     system("PAUSE");

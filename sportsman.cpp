@@ -1,6 +1,37 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
 #include "sportsman.h"
 
 using namespace std;
+
+// swap 
+void Sportsman::swap(Sportsman data)
+{
+	Sportsman temp; 
+	// меняем фамилию
+	strcpy(temp.surname, data.surname);
+	strcpy(data.surname, surname);
+	strcpy(surname, temp.surname);
+
+	// меняем порядковый номер спортсмена
+	temp.number = data.number; 
+	data.number = number; 
+	number = temp.number; 
+
+	// меняем попытки спортсмена
+
+	temp.attemtionOne = data.attemtionOne;
+	data.attemtionOne = attemtionOne;
+	attemtionOne = temp.attemtionOne;
+
+	temp.attemptionTwo = data.attemptionTwo;
+	data.attemptionTwo = attemptionTwo;
+	attemptionTwo = temp.attemptionTwo;
+
+	temp.attemptionThree = data.attemptionThree;
+	data.attemptionThree = attemptionThree;
+	attemptionThree = temp.attemptionThree;
+}
 
 bool Sportsman::writeToFile(std::ofstream* outFile) {
 	// File not open

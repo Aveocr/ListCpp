@@ -54,7 +54,6 @@ void MyList::print_all() {
 	cout << setw(20) << "Surname" << setw(20) << "Number" << setw(10) << "Sum result" << endl;
 	int count = 0;
 	while (count < size) {
-		cout << setw(10) << count;
 		cout << setw(20) << current->data.surname; // фамилия
 		cout << setw(20) << current->data.number; // имя
 		cout << setw(10) << current->data.sumAttemption() << endl;
@@ -100,6 +99,7 @@ void MyList::print_surname(char surname[])
 	cout << "__________________________________________" << endl << endl;
 }
 
+// Вывод людей по нику
 void MyList::print_count_point()
 {
 	Node* current; 
@@ -159,6 +159,7 @@ bool MyList::readFromFile()
 	return true;
 }
 
+// чтения из обычного файла
 bool MyList::readFromTextFile()
 {
 	
@@ -212,6 +213,94 @@ bool MyList::load_to_file()
 	return true;
 }
 
+// Сортировка по фамилии
+void MyList::sortBySurname()
+{
+	Node* current;
+	Node* next; 
+	Sportsman temp; 
+
+	for (int i = 0; i < size; i++) {
+		current = head; // j 
+		next = current->pNext; // j+1
+
+		for (int j = 0; j < size - 1; j++) {
+			// Если фамилия из current->data.surname больше, чем next->data.surname, то начинаем нашу сортировку
+			if (strcmp(current->data.surname, next->data.surname) > 0) {
+
+
+				// Не трогать, работает так себе 
+				/*temp.swap(next->data);
+				next->data.swap(current->data);
+				current->data.swap(temp);*/
+				
+				// Чисто формально, весь этот копипаст можно засунуть в swap, как сделано выше, но он почему-то работает не так как надо
+				strcpy(temp.surname, current->data.surname);
+				// меняем фамилии местами
+				strcpy(current->data.surname, next->data.surname);
+				strcpy(next->data.surname, temp.surname);
+				// меняем номер спортсмена 
+				temp.number = current->data.number;
+				current->data.number = next->data.number; 
+				next->data.number = temp.number; 
+				// меняем баллы за попытку
+				temp.attemtionOne = current->data.attemtionOne;
+				current->data.attemtionOne = next->data.attemtionOne;
+				next->data.attemtionOne = temp.attemtionOne;
+
+				temp.attemptionTwo = current->data.attemptionTwo;
+				current->data.attemptionTwo = next->data.attemptionTwo;
+				next->data.attemptionTwo = temp.attemptionTwo;
+
+				temp.attemptionThree = current->data.attemptionThree;
+				current->data.attemptionThree = next->data.attemptionThree;
+				next->data.attemptionThree = temp.attemptionThree;
+			}
+			current = current->pNext;
+			next = current->pNext;
+		}
+		
+	}
+}
+
+// Сортировка по сумме
+void MyList::sortBySum()
+{
+	Node* current; 
+	Node* next; 
+	Sportsman temp;
+	for (int i = 0; i < size; i++) {
+		current = head;  // j
+		next = current->pNext; // j + 1
+		for (int j = 0; j < size - 1; j++) {
+			if (current->data.sumAttemption() > next->data.sumAttemption()) {
+				// Чисто формально, весь этот копипаст можно засунуть в swap, как сделано выше, но он почему-то работает не так как надо
+				strcpy(temp.surname, current->data.surname);
+				// меняем фамилии местами
+				strcpy(current->data.surname, next->data.surname);
+				strcpy(next->data.surname, temp.surname);
+				// меняем номер спортсмена 
+				temp.number = current->data.number;
+				current->data.number = next->data.number;
+				next->data.number = temp.number;
+				// меняем баллы за попытку
+				temp.attemtionOne = current->data.attemtionOne;
+				current->data.attemtionOne = next->data.attemtionOne;
+				next->data.attemtionOne = temp.attemtionOne;
+
+				temp.attemptionTwo = current->data.attemptionTwo;
+				current->data.attemptionTwo = next->data.attemptionTwo;
+				next->data.attemptionTwo = temp.attemptionTwo;
+
+				temp.attemptionThree = current->data.attemptionThree;
+				current->data.attemptionThree = next->data.attemptionThree;
+				next->data.attemptionThree = temp.attemptionThree;
+			}
+			current = current->pNext;
+			next = next->pNext;
+		}
+	}
+}
 
 // удаление списка
 void MyList::remove() {
@@ -223,7 +312,6 @@ void MyList::remove() {
 	}
 	head = nullptr;
 }
-
 
 // удаление последнего элемента 
 void MyList::pop_back()
@@ -241,6 +329,7 @@ void MyList::pop_front()
 
 }
 // начинается с нуля 
+
 void MyList::pop_index(int index)
 {
 	if (index == 0) {

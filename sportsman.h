@@ -9,6 +9,9 @@ public:
 	int number;
 	int attemtionOne, attemptionTwo, attemptionThree;
 
+
+	void swap(Sportsman data);
+
 	bool writeToFile(std::ofstream* outFile);
 	bool readToFile(std::ifstream* inFile);
 	int sumAttemption();
