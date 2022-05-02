@@ -322,11 +322,16 @@ void MyList::pop_back()
 // удаление первого элемента
 void MyList::pop_front()
 {
-	Node* temp = head; 
-	head = head->pNext; 
-	delete temp;
-	size--;
-
+	if (this->head == nullptr) {
+		cout << "Ошибка! Список пустой!" << endl;
+		system("pause");
+	}
+	else {
+		Node* temp = head;
+		head = head->pNext;
+		delete temp;
+		size--;
+	}
 }
 // начинается с нуля 
 
@@ -334,6 +339,10 @@ void MyList::pop_index(int index)
 {
 	if (index == 0) {
 		pop_front();
+	}
+	else if (index < size || index >= size) {
+		cout << "Размер введен не правильно. Такого номера в списка не существует" << endl;
+		system("pause");
 	}
 	else
 	{

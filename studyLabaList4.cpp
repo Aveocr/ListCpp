@@ -26,7 +26,10 @@ int main()
 {
     setlocale(0, "");
     bool flag = true;
-    int select; 
+    int point;
+    int number;
+    int select;
+    char surname[50];
     MyList list;
 
     cout.setf(ios::left);
@@ -78,10 +81,10 @@ int main()
                 break;
 
             case 6:
-                int age;
+                int point;
                 cout << "Введите сумму баллов спортсменов, которых вы хотите найти в списке: ";
-                cin >> age; 
-                list.print_point(age);
+                cin >> point; 
+                list.print_point(point);
 
                 cout << "Дополнительная информация: ";
                 list.print_count_point();
@@ -96,7 +99,7 @@ int main()
 
             case 9:
                 list.print_all();
-                int number;
+                
                 cout << "Введите номер, которые вы хотите удалить: ";
                 cin >> number; 
                 list.pop_index(number);
@@ -128,11 +131,18 @@ int main()
                 list.print_all();
                 system("pause");
                 break;
-            case 14: cout << "Метод еще не создан" << endl;
+            case 14: cout << "Поиск по баллам" << endl;
+                
+                cout << "Введите сумму баллов спортсменов, которых вы хотите найти в списке: ";
+                cin >> point;
+                list.print_point(point);
                 system("pause");
                 break;
+            case 15: cout << "Поиск по фамилии" << endl;
 
-            case 15: cout << "Метод еще не создан" << endl;
+                cout << "Введите фамилию человека, которого хотите найти в списке: ";
+                cin >> surname;
+                list.print_surname(surname);
                 system("pause");
                 break;
 
